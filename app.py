@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 from ingest import extract_text_from_pdf
-from chunk import chunk_pages
+from chunking import chunk_pages
 from embed_store import embed_and_store
 from retrieve import retrieve_chunks
 from generate import generate_answer

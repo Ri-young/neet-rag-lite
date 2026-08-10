@@ -59,7 +59,7 @@ if __name__ == '__main__':
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     
     from ingest import extract_text_from_pdf
-    from chunk import chunk_pages
+    from chunking import chunk_pages
     
     sample_path = 'data/ncert_biology.pdf'
     if os.path.exists(sample_path):
