@@ -1,8 +1,5 @@
-from sentence_transformers import SentenceTransformer
 import chromadb
 
-# Load the same embedding model
-model = SentenceTransformer('all-MiniLM-L6-v2')
 client = chromadb.PersistentClient(path='./chroma_db')
 
 def retrieve_chunks(question, subject='Biology', top_k=5):
@@ -13,6 +10,9 @@ def retrieve_chunks(question, subject='Biology', top_k=5):
     subject: which collection to search ('Biology', 'Chemistry', 'Physics')
     top_k: how many chunks to return (5 is the sweet spot)
     """
+    from sentence_transformers import SentenceTransformer
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    
     # Step 1: embed the question
     question_embedding = model.encode(question).tolist()
     

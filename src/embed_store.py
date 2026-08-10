@@ -1,9 +1,4 @@
-from sentence_transformers import SentenceTransformer
 import chromadb
-
-# Load the embedding model — this downloads ~90MB on first run, then it's cached
-# 'all-MiniLM-L6-v2' is fast, free, runs locally — no API needed
-model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Create ChromaDB client — stores data in a local folder called 'chroma_db'
 client = chromadb.PersistentClient(path='./chroma_db')
@@ -25,6 +20,9 @@ def embed_and_store(chunks):
     Converts each chunk's text into an embedding vector
     Stores vector + original text + metadata in ChromaDB
     """
+    from sentence_transformers import SentenceTransformer
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    
     # Group chunks by subject (for separate collections)
     subjects = set(c['subject'] for c in chunks)
     
